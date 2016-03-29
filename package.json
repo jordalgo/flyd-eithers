@@ -1,0 +1,34 @@
+{
+  "name": "flyd-eithers",
+  "version": "0.1.0",
+  "description": "A utility library for using Eithers in flyd streams",
+  "main": "index.js",
+  "dependencies": {
+    "ramda": "^0.19.1",
+    "flyd": "^0.2.1"
+  },
+  "devDependencies": {
+    "eslint": "^1.10.3",
+    "mocha": "^2.2.1"
+  },
+  "scripts": {
+    "test": "mocha -R spec test/*.js",
+    "docs": "documentation -f md lib/index.js > API.md"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jordalgo/flyd-eithers.git"
+  },
+  "keywords": [
+    "functional",
+    "reactive",
+    "modular",
+    "library"
+  ],
+  "author": "Jordan Rome",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jordalgo/flyd-eithers/issues"
+  },
+  "homepage": "https://github.com/jordalgo/flyd-eithers"
+}
