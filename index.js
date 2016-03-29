@@ -5,6 +5,7 @@
 module.exports = function flydEithers(E) {
   return {
     map: require('./lib/map')(E),
-    scan: require('./lib/scan')(E)
+    scan: require('./lib/scan')(E),
+    endsOnLeft: require('./lib/endsOnLeft')
   };
 };
