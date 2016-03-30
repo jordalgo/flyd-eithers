@@ -13,6 +13,8 @@ If the operation fails it fills the stream with a Left value.
 **Examples**
 
 ```javascript
+var S = require('sanctuary');
+var ap = require('flyd-eithers/lib/ap')(S);
 var s1 = flyd.stream(Right(addOne));
 var s2 = flyd.stream(Right(1));
 ap(s1, s2)(); //=> Right(2);
@@ -47,14 +49,19 @@ the returned Stream will contain a Left.
 **Parameters**
 
 -   `f` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** the mapping function
+-   `s` **flyd-stream** the stream that contains the Either
 
 **Examples**
 
 ```javascript
+var S = require('sanctuary');
+var map = require('flyd-eithers/lib/map')(S);
 var addOne = function(x) { return x+1; };
 var s = flyd.stream(Right(5));
 map(addOne, s)(); //=> Right(6);
 ```
+
+Returns **flyd-stream** the mapped stream with an Either
 
 # scan
 
@@ -66,12 +73,17 @@ If the operation fails it fills the stream with a Left value.
 **Parameters**
 
 -   `f` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** reducer function
--   `acc` **Either** an either (perhaps containing the accumulator)
+-   `acc` **either** an either (perhaps containing the accumulator)
+-   `st` **flyd-stream** a stream containing an Either
 
 **Examples**
 
 ```javascript
+var S = require('sanctuary');
+var scan = require('flyd-eithers/lib/scan')(S);
 var add = function(acc, x) { return acc + x; };
 var s = flyd.stream(Right(1));
 scan(add, Right(5), s)(); //=> Right(6);
 ```
+
+Returns **flyd-stream** the scanned stream
