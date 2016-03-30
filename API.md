@@ -7,8 +7,8 @@ If the operation fails it fills the stream with a Left value.
 
 **Parameters**
 
--   `s1` **flyd-stream** the stream that contains the function
--   `s2` **flyd-stream** the stream that contains the value
+-   `stream1` **flyd-stream** the stream that contains the function
+-   `stream2` **flyd-stream** the stream that contains the value
 
 **Examples**
 
@@ -26,7 +26,7 @@ Returns **flyd-stream** the combined applied stream
 
 If the ender stream emits a Left it ends the passed stream.
 
-**Signature**: \`Stream Either a b -> Stream Either a b -> Stream Either a c
+**Signature**: \`Stream Either a b -> Stream Either a b -> undefined
 
 **Examples**
 
@@ -48,8 +48,8 @@ the returned Stream will contain a Left.
 
 **Parameters**
 
--   `f` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** the mapping function
--   `s` **flyd-stream** the stream that contains the Either
+-   `fn` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** the mapping function
+-   `stream` **flyd-stream** the stream that contains the Either
 
 **Examples**
 
@@ -72,9 +72,9 @@ If the operation fails it fills the stream with a Left value.
 
 **Parameters**
 
--   `f` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** reducer function
+-   `fn` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** reducer function
 -   `acc` **either** an either (perhaps containing the accumulator)
--   `st` **flyd-stream** a stream containing an Either
+-   `stream` **flyd-stream** a stream containing an Either
 
 **Examples**
 
