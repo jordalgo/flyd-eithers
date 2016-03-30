@@ -1,11 +1,12 @@
-/**
- * @param {Object} E - A constructor of Eithers:
- * This can be either Sanctuary's Either or Folk-Tale's data.Either
- */
 module.exports = function flydEithers(E) {
+  if (!E || !E.Left || !E.Right) {
+    throw new Error('flyd-eithers needs a proper Either constructor.');
+  }
   return {
     map: require('./lib/map')(E),
     scan: require('./lib/scan')(E),
+    ap: require('./lib/ap')(E),
+    toEither: require('./lib/toEither')(E),
     endsOnLeft: require('./lib/endsOnLeft')
   };
 };
