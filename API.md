@@ -1,17 +1,14 @@
 # ap
 
-**Parameters**
-
--   `E`
-
-Returns **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** the apply function for streams with Eithers.
-
-# ap
-
 Returns a Flyd Stream.
 If the operation fails it fills the stream with a Left value.
 
 **Signature**: \`Stream Either a b -> Stream Either a b -> Stream Either a c
+
+**Parameters**
+
+-   `s1` **flyd-stream** the stream that contains the function
+-   `s2` **flyd-stream** the stream that contains the value
 
 **Examples**
 
@@ -20,6 +17,8 @@ var s1 = flyd.stream(Right(addOne));
 var s2 = flyd.stream(Right(1));
 ap(s1, s2)(); //=> Right(2);
 ```
+
+Returns **flyd-stream** the combined applied stream
 
 # endsOnLeft
 
@@ -36,14 +35,6 @@ endsOnLeft(s1, s2);
 s1(Left('error'));
 s2.end() //=> true
 ```
-
-# map
-
-**Parameters**
-
--   `E`
-
-Returns **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** the map function for streams with Eithers.
 
 # map
 
@@ -64,14 +55,6 @@ var addOne = function(x) { return x+1; };
 var s = flyd.stream(Right(5));
 map(addOne, s)(); //=> Right(6);
 ```
-
-# scan
-
-**Parameters**
-
--   `E`
-
-Returns **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** the scan function for streams with Eithers.
 
 # scan
 
