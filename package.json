@@ -9,6 +9,7 @@
   },
   "devDependencies": {
     "data.either": "^1.3.0",
+    "documentation": "^4.0.0-beta2",
     "eslint": "^2.5.3",
     "eslint-config-airbnb": "^6.2.0",
     "mocha": "^2.2.1",
@@ -16,7 +17,7 @@
   },
   "scripts": {
     "test": "mocha -R spec test/*.js",
-    "docs": "documentation -f md lib/index.js > API.md"
+    "docs": "documentation build -f md lib/* > API.md"
   },
   "repository": {
     "type": "git",
