@@ -7,6 +7,8 @@ function testSuite(E, scan) {
     var b = scan(function (acc, x) { return acc + x; }, E.Right(5), a);
     assert.equal(b().value, 10);
     assert(b().isRight);
+    a(E.Right(10));
+    assert.equal(b().value, 20);
   });
   it('does not scan on the value within a Left', function () {
     var a = flyd.stream(E.Left(5));

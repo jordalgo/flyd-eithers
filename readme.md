@@ -17,8 +17,10 @@ var flydEithers = require('flyd-eithers')(S);
 var flyd = require('flyd');
 
 var a = flyd.stream();
-var b = flydEithers.toEither(a);
-var c = b.map(function(x) { return x + 1; });
+var c = flydEithers
+  .toEither(a)
+  .map(function(x) { return x + 1; })
+  .scan(function(acc, x) { return acc + x; }, S.Right(10));
 
 flyd.on(function(x) {
   console.log(x);
@@ -26,11 +28,12 @@ flyd.on(function(x) {
 
 var count = 0;
 setInterval(function() {
-  a(count++);
+  count++;
+  a(count);
 }, 1000);
 
-// Right(1);
-// Right(2);
+// Right(12);
+// Right(15);
 // etc..
 ```
 

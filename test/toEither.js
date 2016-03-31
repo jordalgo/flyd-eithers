@@ -52,6 +52,18 @@ function testSuite(E, toEither) {
     c(E.Left('error'));
     assert.deepEqual(d(), E.Left('error'));
   });
+  it('can chain either methods', function () {
+    var a = flyd.stream();
+    var add1 = function (x) { return x + 1; };
+    var sum = function (acc, x) { return acc + x; };
+    var c = toEither(a)
+      .map(add1)
+      .scan(sum, E.Right(5));
+    a(1);
+    assert.deepEqual(c(), E.Right(7));
+    a(2);
+    assert.deepEqual(c(), E.Right(10));
+  });
 }
 
 describe('toEither', function () {
