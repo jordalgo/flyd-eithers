@@ -16,6 +16,7 @@
     "sanctuary": "^0.9.1"
   },
   "scripts": {
+    "lint": "eslint test/ lib/",
     "test": "mocha -R spec test/*.js",
     "docs": "documentation build -f md lib/* > API.md"
   },

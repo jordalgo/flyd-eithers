@@ -20,7 +20,7 @@ function testSuite(E, scan) {
   });
   it('produces a Left if the accumulator throws', function () {
     var a = flyd.stream(E.Right(1));
-    var b = scan(function (acc, x) {
+    var b = scan(function () {
       throw new Error('e');
     }, E.Right(1), a);
     assert(b().isLeft);
