@@ -87,3 +87,35 @@ scan(add, Right(5), s)(); //=> Right(6);
 ```
 
 Returns **flyd-stream** the scanned stream
+
+# toEither
+
+Returns a Flyd Stream.
+
+A special Flyd Stream with:
+
+-   map
+-   scan
+-   ap
+    that act on the Eithers within them.
+    **Important** don't pass values into this newly created stream.
+    Use the original stream to pass values.
+
+**Signature**: \`Stream a -> Stream Either a b
+
+**Parameters**
+
+-   `stream` **flyd-stream**
+
+**Examples**
+
+```javascript
+var S = require('sanctuary');
+var toEither = require('flyd-eithers/lib/toEither')(S);
+var s1 = flyd.stream();
+var s1Either = toEither(s1);
+s1(1);
+s1Either(); //=> Right(1);
+```
+
+Returns **flyd-stream** the stream that now only contains Eithers

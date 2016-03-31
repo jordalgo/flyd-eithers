@@ -40,6 +40,18 @@ function testSuite(E, toEither) {
     a(5);
     assert.deepEqual(c(), E.Right(10));
   });
+  it('has a ap function that acts on Eithers', function () {
+    var a = flyd.stream();
+    var b = toEither(a);
+    var c = flyd.stream();
+    var d = b.ap(c);
+    function add1(x) { return x + 1; }
+    a(add1);
+    c(E.Right(1));
+    assert.deepEqual(d(), E.Right(2));
+    c(E.Left('error'));
+    assert.deepEqual(d(), E.Left('error'));
+  });
 }
 
 describe('toEither', function () {
