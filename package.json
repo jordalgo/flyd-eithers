@@ -1,6 +1,6 @@
 {
   "name": "flyd-eithers",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A utility library for using Eithers in flyd streams",
   "main": "index.js",
   "dependencies": {
