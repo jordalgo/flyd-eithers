@@ -27,6 +27,13 @@ function testSuite(E, scan) {
     }, E.Right(1), a);
     assert(b().isLeft);
   });
+  it('converts a raw accumulator value into an Either', function () {
+    var a = flyd.stream(E.Right(5));
+    var b = scan(function (acc, x) { return acc + x; }, 5, a);
+    assert.equal(b().value, 10);
+    a(E.Right(5));
+    assert.equal(b().value, 15);
+  });
 }
 
 describe('scan', function () {
