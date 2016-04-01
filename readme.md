@@ -2,6 +2,8 @@
 
 A utility library for working with Eithers in [flyd](https://github.com/paldepind/flyd) streams.
 
+This allows for error bubbling and safe transformations within flyd streams. Examples below.
+
 ## [API](./API.md)
 
 ## Dependencies
@@ -35,6 +37,34 @@ setInterval(function() {
 // Right(12);
 // Right(15);
 // etc..
+```
+
+## Error Example
+
+```javascript
+var S = require('Sanctuary');
+var flydEithers = require('flyd-eithers')(S);
+var flyd = require('flyd');
+
+var a = flyd.stream();
+var c = flydEithers
+  .toEither(a)
+  .map(function(x) { return x + 1; })
+  .scan(function(acc, x) { return acc + x; }, S.Right(10));
+
+flyd.on(function(x) {
+  console.log(x);
+}, c);
+
+function mockHttpRequest() {
+  setTimeout(function() {
+    a(S.Left('error 404'));
+  }, 100);
+}
+
+mockHttpRequest();
+
+// Left('error 404') // Safe travel through map and scan :)
 ```
 
 
