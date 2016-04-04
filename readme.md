@@ -22,11 +22,9 @@ var a = flyd.stream();
 var c = flydEithers
   .toEither(a)
   .map(function(x) { return x + 1; })
-  .scan(function(acc, x) { return acc + x; }, S.Right(10));
+  .scan(function(acc, x) { return acc + x; }, 10);
 
-flyd.on(function(x) {
-  console.log(x);
-}, c);
+flyd.on(console.log.bind(console), c);
 
 var count = 0;
 setInterval(function() {
@@ -42,19 +40,13 @@ setInterval(function() {
 ## Error Example
 
 ```javascript
-var S = require('Sanctuary');
-var flydEithers = require('flyd-eithers')(S);
-var flyd = require('flyd');
-
 var a = flyd.stream();
 var c = flydEithers
   .toEither(a)
   .map(function(x) { return x + 1; })
-  .scan(function(acc, x) { return acc + x; }, S.Right(10));
+  .scan(function(acc, x) { return acc + x; }, 10);
 
-flyd.on(function(x) {
-  console.log(x);
-}, c);
+flyd.on(console.log.bind(console), c);
 
 function mockHttpRequest() {
   setTimeout(function() {
@@ -67,5 +59,19 @@ mockHttpRequest();
 // Left('error 404') // Safe travel through map and scan :)
 ```
 
+## Error Example 2
+
+```javascript
+var a = flyd.stream();
+var c = flydEithers
+  .toEither(a)
+  .map(function(x) { throw new Error('some error'); })
+  .scan(function(acc, x) { return acc + x; }, 10);
+
+flyd.on(console.log.bind(console), c);
+a(5);
+
+// Left('some error') // Error caught safely.
+```
 
 
