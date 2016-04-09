@@ -52,6 +52,20 @@ function testSuite(E, toEither) {
     c(E.Left('error'));
     assert.deepEqual(d(), E.Left('error'));
   });
+  it('has a mapRights function that acts on Eithers', function () {
+    var a = flyd.stream();
+    var b = toEither(a);
+    var add1 = function (x) { return x + 1; };
+    var c = b.mapRights(add1);
+    var emitCount = 0;
+    flyd.on(function (v) {
+      emitCount++;
+      assert(v.isRight);
+    }, c);
+    a(2);
+    a(E.Left('error'));
+    assert.equal(emitCount, 1);
+  });
   it('can chain either methods', function () {
     var a = flyd.stream();
     var add1 = function (x) { return x + 1; };
